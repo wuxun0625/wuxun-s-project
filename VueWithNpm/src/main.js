@@ -2,7 +2,7 @@
 
     paths: {
 
-        "Vue": "./lib/vue",
+        "Vue": "./lib/vue", 
 
     }
 
