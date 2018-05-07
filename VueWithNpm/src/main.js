@@ -16,26 +16,35 @@
         // 这个 prop 名为 todo。
         props: ['todo'],
         template: '<li>{{ todo.text }}</li>'
-      })
+    })
 
-    new Vue({
+    var app = new Vue({
         el: '#app',
         data: {
             parentMessage: 'wuxun msg',
             items: [
-              { message: 'www.runoob.com1' },
-              { message: 'www.runoob.com2' }
+                { message: 'www.runoob.com1' },
+                { message: 'www.runoob.com2' }
             ],
             aaaa: 'titleaaa',
             groceryList: [
                 { id: 0, text: '蔬菜' },
                 { id: 1, text: '奶酪' },
                 { id: 2, text: '随便其它什么人吃的东西' }
-              ]
+            ],
+            fw: 'bold',
+            stObj: {
+                fontWeight: 'bold',
+                fontSize: '2em'
+            },
+            stObj1: {
+                color: 'red'
+            }
         },
         methods: {
             clickFunc: function () {
-                this.aaaa = 'titlebbb'
+                this.stObj.fontWeight = '';
+                this.stObj.fontSize = '1em';
             }
         }
     });

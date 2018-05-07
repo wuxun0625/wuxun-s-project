@@ -9,7 +9,7 @@
 
 <body>
   <div id="app">
-    <span v-bind:title='aaaa' v-on:click="clickFunc">xxxxx</span>
+    <span v-bind:title="aaaa" v-bind:style="[stObj,stObj1]" v-on:click="clickFunc">xxxxx</span>
     <ul id="example-2">
       <li v-for="(item,index) in items">
         {{ parentMessage }} - {{ index }} - {{ item.message }}
