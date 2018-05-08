@@ -4,31 +4,72 @@
 <head>
   <meta charset="utf-8">
   <title>wuxun's vue demo</title>
-  <script src="./lib/require.js" data-main="./main"></script>
+  <script src="./lib/require.js"
+          data-main="./main"></script>
 </head>
 
 <body>
   <div id="app">
-    <span v-bind:title="aaaa" v-bind:style="[stObj,stObj1]" v-on:click="clickFunc">xxxxx</span>
+    <span v-bind:title="aaaa"
+          v-bind:style="[stObj,stObj1]"
+          v-on:click="clickFunc">xxxxx</span>
+    <hr>
+
     <ul id="example-2">
       <li v-for="(item,index) in items">
         {{ parentMessage }} - {{ index }} - {{ item.message }}
       </li>
     </ul>
+    <hr>
 
-    <ol>
+    <ol type="A"
+        v-on:click="reversalArr"
+        style="margin-bottom: 10px">
       <!--
         现在我们为每个 todo-item 提供 todo 对象
         todo 对象是变量，即其内容可以是动态的。
         我们也需要为每个组件提供一个“key”，稍后再
         作详细解释。
       -->
-      <todo-item
-        v-for="item in groceryList"
-        v-bind:todo="item"
-        v-bind:key="item.id">
+      <todo-item v-for="item in groceryList"
+                 v-bind:todo="item"
+                 v-bind:key="item.id">
       </todo-item>
     </ol>
+    <template v-for="(item,index) in groceryListCopy">
+      <span v-on:click="reversalArrCopy"
+            v-on:mouseover="addItemArr"
+            v-on:mouseout="removeItemArr">
+        {{item.text}}
+      </span><br>
+    </template>
+
+
+    <hr>
+
+    <span v-if="vIfFlg"
+          v-on:click="vIfYesClickFunc">
+      test v-if yes
+    </span>
+    <span v-else
+          v-on:click="vIfNoClickFunc">
+      test v-if no
+    </span>
+    <hr>
+
+    <ul>
+      <li v-for="(value,key,index) in vForObj"
+          v-bind:key="key"
+          v-on:click="addItemForObj">
+        {{index}}-{{key}}-{{value}}
+      </li>
+    </ul>
+
+
+
+
+
+
   </div>
 </body>
 
