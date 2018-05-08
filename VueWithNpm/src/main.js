@@ -51,7 +51,10 @@
                 item2: "item2Value",
                 item3: "item3Value",
                 item4: "item4Value",
-            }
+            },
+            showParameterAndEventTagName: '',
+            inputValue: '',
+            spanValue: ''
         },
         methods: {
             clickFunc: function () {
@@ -79,6 +82,15 @@
             addItemForObj: function () {
                 var keyName = Object.keys(this.vForObj).length + 1;
                 Vue.set(this.vForObj, 'item' + keyName, 'item' + keyName + 'Value')
+            },
+            clickFuncWithParameter: function (msg, event) {
+                this.showParameterAndEventTagName = "<br>Parameter is:" + msg + "<br>TagName is:" + event.target.tagName;
+            },
+            boardCastClick: function (event) {
+                alert('BoardCast to div tag!');
+            },
+            copyValue: function (event) {
+                this.spanValue = this.inputValue;
             }
         }
     });

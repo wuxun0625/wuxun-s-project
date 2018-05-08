@@ -27,7 +27,7 @@
         style="margin-bottom: 10px">
       <!--
         现在我们为每个 todo-item 提供 todo 对象
-        todo 对象是变量，即其内容可以是动态的。11
+        todo 对象是变量，即其内容可以是动态的。
         我们也需要为每个组件提供一个“key”，稍后再
         作详细解释。
       -->
@@ -41,7 +41,8 @@
             v-on:mouseover="addItemArr"
             v-on:mouseout="removeItemArr">
         {{item.text}}
-      </span><br>
+      </span>
+      <br>
     </template>
 
 
@@ -64,11 +65,20 @@
         {{index}}-{{key}}-{{value}}
       </li>
     </ul>
+    <hr>
 
+    <div v-on:click="boardCastClick">
+      <!--Use stop to prevent event board cast to upper level node-->
+      <span v-on:click.stop="clickFuncWithParameter('aaa',$event)">
+        test click event
+      </span>
+      <span v-html="showParameterAndEventTagName">
+      </span>
+    </div>
+    <hr>
 
-
-
-
+    <input @keyup.ctrl.67="copyValue" v-model="inputValue"><br>
+    <span>Press Ctrl+C to Copy input value:{{spanValue}}</span>
 
   </div>
 </body>
