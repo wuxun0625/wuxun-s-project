@@ -77,9 +77,15 @@
     </div>
     <hr>
 
-    <input @keyup.ctrl.67="copyValue" v-model="inputValue"><br>
+    <input @keyup.ctrl.67="copyValue"
+           v-model="inputValue">
+    <br>
     <span>Press Ctrl+C to Copy input value:{{spanValue}}</span>
+    <hr>
 
+    <copy-input v-bind:first-value="0.1"
+                v-bind:second-value="0.2"
+                v-on:alert-copy-value="onAlertCopyValueFunc"></copy-input>
   </div>
 </body>
 

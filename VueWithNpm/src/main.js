@@ -18,6 +18,31 @@
         template: '<li>{{ todo.text }}</li>'
     })
 
+    Vue.component('copy-input', {
+        props: ['firstValue', 'secondValue'],
+        data: function () {
+            return {
+                totalValue: this.firstValue + this.secondValue,
+                copyTotalValue: ''
+            }
+        },
+        template: '\
+        <div>\
+            <input v-on:keyup.ctrl.67=copyToSpan v-model="totalValue"></input><br>\
+            <span v-on:click="triggerAlert">Copyed Value is: {{copyTotalValue}}</span>\
+        </div>\
+        ',
+        methods: {
+            copyToSpan: function () {
+                this.copyTotalValue = this.totalValue;
+            },
+            triggerAlert: function () {
+                this.$emit('alert-copy-value',this.copyTotalValue);
+            }
+        }
+
+    })
+
     var app = new Vue({
         el: '#app',
         data: {
@@ -91,6 +116,9 @@
             },
             copyValue: function (event) {
                 this.spanValue = this.inputValue;
+            },
+            onAlertCopyValueFunc: function(copyValue) {
+                alert(copyValue);
             }
         }
     });
