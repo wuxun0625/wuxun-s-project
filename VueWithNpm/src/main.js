@@ -44,25 +44,36 @@
     })
 
     var copyInputLocal = {
-        props: ['firstValue', 'secondValue'],
+        props: {
+            firstValue: Number,
+            secondValue: Number,
+            fontWeight: Number
+        },
         data: function () {
             return {
                 totalValue: this.firstValue + this.secondValue,
-                copyTotalValue: ''
+                copyTotalValue: '',
+                unPropAttributeValue: ''
             }
         },
         template: '\
         <div>\
             <input v-on:keyup.ctrl.67=copyToSpan v-model="totalValue"></input><br>\
-            <span v-on:click="triggerAlert">Copyed Value is: {{copyTotalValue}}</span>\
+            <span v-on:click="triggerAlert">Copyed Value is: {{copyTotalValue}}</span><br>\
+            <span>test object prop and prop validator:{{fontWeight}}</span><br>\
+            <span>test unProp attribute:{{unPropAttributeValue}}</span><br>\
         </div>\
         ',
         methods: {
             copyToSpan: function () {
                 this.copyTotalValue = this.totalValue;
+                //un-prop attribute can only access by $el when component mounted
+                //Which means we can use $el in data block
+                this.unPropAttributeValue = this.$el.getAttribute('un-prop');
             },
             triggerAlert: function () {
                 this.$emit('alert-copy-value',this.copyTotalValue);
+                this.unPropAttributeValue = this.$el.getAttribute('un-prop');
             }
         }
 

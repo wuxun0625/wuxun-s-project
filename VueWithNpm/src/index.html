@@ -89,7 +89,9 @@
     <hr>
     <copy-value-local v-bind:first-value="0.2"
                 v-bind:second-value="0.3"
-                v-on:alert-copy-value="onAlertCopyValueFunc"></copy-value-local>
+                v-on:alert-copy-value="onAlertCopyValueFunc"
+                v-bind="stObj"
+                un-prop="testUnProp"></copy-value-local>
     <hr>
 
   </div>
