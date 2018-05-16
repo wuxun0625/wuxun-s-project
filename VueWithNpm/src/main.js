@@ -37,7 +37,7 @@
                 this.copyTotalValue = this.totalValue;
             },
             triggerAlert: function () {
-                this.$emit('alert-copy-value',this.copyTotalValue);
+                this.$emit('alert-copy-value', this.copyTotalValue);
             }
         }
 
@@ -72,9 +72,57 @@
                 this.unPropAttributeValue = this.$el.getAttribute('un-prop');
             },
             triggerAlert: function () {
-                this.$emit('alert-copy-value',this.copyTotalValue);
+                this.$emit('alert-copy-value', this.copyTotalValue);
                 this.unPropAttributeValue = this.$el.getAttribute('un-prop');
             }
+        }
+
+    };
+
+    var baseInput = {
+        inheritAttrs: false,
+        props: {
+            'label': String,
+            'value': String
+        },
+        computed: {
+            inputListeners: function () {
+                var vm = this
+                // `Object.assign` 将所有的对象合并为一个新对象
+                return Object.assign({},
+                    // 我们从父级添加所有的监听器
+                    this.$listeners,
+                    // 然后我们添加自定义监听器，
+                    // 或覆写一些监听器的行为
+                    {
+                        // 这里确保组件配合 `v-model` 的工作
+                        input: function (event) {
+                            vm.$emit('input', event.target.value)
+                        },
+                        focus: function (event) {
+                            vm.$emit('focus', event.target.value)
+                        },
+                    }
+                )
+            }
+        },
+        data: function () {
+            return {
+
+            }
+        },
+        template: '\
+        <label>\
+        {{ label }}\
+        <input\
+          v-bind="$attrs"\
+          v-bind:value="value"\
+          v-on="inputListeners"\
+        >\
+      </label>\
+        ',
+        methods: {
+
         }
 
     };
@@ -82,7 +130,8 @@
     var app = new Vue({
         el: '#app',
         components: {
-            'copy-value-local': copyInputLocal
+            'copy-value-local': copyInputLocal,
+            'base-input': baseInput
         },
         data: {
             parentMessage: 'wuxun msg',
@@ -156,8 +205,11 @@
             copyValue: function (event) {
                 this.spanValue = this.inputValue;
             },
-            onAlertCopyValueFunc: function(copyValue) {
+            onAlertCopyValueFunc: function (copyValue) {
                 alert(copyValue);
+            },
+            onFocus: function (value) {
+                window.console.log(value);
             }
         }
     });

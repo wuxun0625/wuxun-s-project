@@ -88,11 +88,15 @@
                 v-on:alert-copy-value="onAlertCopyValueFunc"></copy-input>
     <hr>
     <copy-value-local v-bind:first-value="0.2"
-                v-bind:second-value="0.3"
-                v-on:alert-copy-value="onAlertCopyValueFunc"
-                v-bind="stObj"
-                un-prop="testUnProp"></copy-value-local>
+                      v-bind:second-value="0.3"
+                      v-on:alert-copy-value="onAlertCopyValueFunc"
+                      v-bind="stObj"
+                      un-prop="testUnProp"></copy-value-local>
     <hr>
+
+    <base-input v-on:focus="onFocus"
+                label="labelValue"
+                value="this is value"></base-input>
 
   </div>
 </body>
