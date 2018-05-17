@@ -3,12 +3,15 @@
     paths: {
 
         "Vue": "./lib/vue",
-
+        "Axios": "./lib/axios",
+        "Vuetable": "./lib/vuetable-2"
     }
 
 });
 
-　　require(['Vue'], function (Vue) {
+　　require(['Vue','Axios','Vuetable'], function (Vue,Axios,Vuetable) {
+
+    Vue.use(Vuetable);
 
     Vue.component('todo-item', {
         // todo-item 组件现在接受一个
@@ -83,7 +86,8 @@
         inheritAttrs: false,
         props: {
             'label': String,
-            'value': String
+            'value': String,
+            'testTitle': String
         },
         computed: {
             inputListeners: function () {
@@ -97,7 +101,8 @@
                     {
                         // 这里确保组件配合 `v-model` 的工作
                         input: function (event) {
-                            vm.$emit('input', event.target.value)
+                            vm.$emit('input', event.target.value);
+                            vm.$emit('update:title', 'newTitle');
                         },
                         focus: function (event) {
                             vm.$emit('focus', event.target.value)
@@ -167,7 +172,8 @@
             },
             showParameterAndEventTagName: '',
             inputValue: '',
-            spanValue: ''
+            spanValue: '',
+            testTitle: 'oldTitle'
         },
         methods: {
             clickFunc: function () {

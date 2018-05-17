@@ -6,6 +6,11 @@
   <title>wuxun's vue demo</title>
   <script src="./lib/require.js"
           data-main="./main"></script>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css"
+        media="screen"
+        title="no title"
+        charset="utf-8">
 </head>
 
 <body>
@@ -96,9 +101,29 @@
 
     <base-input v-on:focus="onFocus"
                 label="labelValue"
-                value="this is value"></base-input>
+                value="this is value"
+                v-bind:title.sync="testTitle"></base-input>
+    {{testTitle}}
+    <hr>
+    <div class="ui container">
+      <vuetable ref="vuetable"
+                api-url="https://vuetable.ratiw.net/api/users"
+                :fields="['name', 'email', 'birthdate']"
+                style="  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+      border:2"></vuetable>
+    </div>
 
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"
+          charset="utf-8"></script>
 </body>
 
 </html>
